@@ -1,0 +1,21 @@
+{
+  "name": "nanga/nanga-contact",
+  "description": "Simple Contact Form",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Panos Paganis",
+      "email": "mallinanga@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Nanga\\": "app/"
+    }
+  },
+  "require": {
+  },
+  "require-dev": {
+  }
+}
