@@ -161,7 +161,7 @@ class Contact
 
     public function assets()
     {
-        wp_enqueue_script('nanga-contact', plugin_dir_url(__DIR__) . 'assets/js/nanga-contact.js', ['jquery'], null, true);
+        wp_enqueue_script('nanga-contact', get_template_directory_uri() . '/vendor/nanga/nanga-contact/assets/js/nanga-contact.js', ['jquery'], null, true);
         wp_localize_script('nanga-contact', 'nangaContact', ['endpoint' => admin_url('admin-ajax.php')]);
     }
 
