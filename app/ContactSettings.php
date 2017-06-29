@@ -1,4 +1,5 @@
 <?php
+
 namespace Nanga;
 
 final class ContactSettings
@@ -15,6 +16,7 @@ final class ContactSettings
         $this->config  = $defaultConfig;
         add_action('acf/init', [$this, 'settingsPage']);
         add_action('acf/init', [$this, 'settingsFields']);
+        add_filter('nanga_settings_tabs', [$this, 'settingsTab']);
         /*
         add_action('acf/input/admin_head', function () {
             remove_meta_box('submitdiv', 'acf_options_page', 'side');
@@ -57,15 +59,16 @@ final class ContactSettings
 
     public function settingsPage()
     {
-        if (function_exists('acf_add_options_page')) {
-            acf_add_options_page([
-                'capability' => 'manage_options',
-                'icon_url'   => 'dashicons-hammer',
-                'menu_slug'  => 'contact-settings',
-                'menu_title' => 'Contact Form',
-                'page_title' => 'Contact Form Configuration',
-                'position'   => false,
-                'redirect'   => false,
+        if (function_exists('acf_add_options_sub_page')) {
+            acf_add_options_sub_page([
+                'capability'  => 'manage_options',
+                'icon_url'    => 'dashicons-hammer',
+                'menu_slug'   => 'contact-settings',
+                'menu_title'  => 'Contact Form',
+                'page_title'  => 'Contact Form Configuration',
+                'parent_slug' => 'options-general.php',
+                'position'    => false,
+                'redirect'    => false,
             ]);
         }
     }
@@ -151,6 +154,18 @@ final class ContactSettings
                 'description'           => '',
             ]);
         }
+    }
+
+    public function settingsTab($tabs)
+    {
+        $tabs['contact'] = [
+            'icon'  => 'dashicons-format-chat',
+            'show'  => true,
+            'slug'  => 'contact',
+            'title' => 'Contact',
+        ];
+
+        return $tabs;
     }
 
     private function __clone()

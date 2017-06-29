@@ -1,0 +1,4 @@
+/.codeclimate.yml export-ignore
+/.gitattributes export-ignore
+/composer.json export-ignore
+/README.md export-ignore
